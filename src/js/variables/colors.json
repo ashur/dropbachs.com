@@ -1,14 +1,25 @@
 {
-	"green": [
-		"rgb( 80, 175, 121 )",
-		"rgb( 24, 130, 114 )",
-		"rgb( 21,  85,  88 )",
-		"rgb( 28,  43,  48 )",
-	],
-	"purple": [
-		"rgb( 247, 228, 209 )",
-		"rgb( 207, 162, 159 )",
-		"rgb( 149, 104, 132 )",
-		"rgb(  59,  63, 109 )",
-	],
+	green: {
+		sky: "rgb( 21,  85,  88 )",
+		background: "rgb( 24, 130, 114 )",
+		foreground: "rgb( 80, 175, 121 )",
+	},
+
+	darkGreen: {
+		sky: "rgb( 28,  43,  48 )",
+		background: "rgb( 21,  85,  88 )",
+		foreground: "rgb( 24, 130, 114 )",
+	},
+
+	purple: {
+		sky: "rgb(  59,  63, 109 )",
+		background: "rgb( 149, 104, 132 )",
+		foreground: "rgb( 207, 162, 159 )",
+	},
+
+	pink: {
+		sky: "rgb( 149, 104, 132 )",
+		background: "rgb( 207, 162, 159 )",
+		foreground: "rgb( 247, 228, 209 )",
+	},
 }

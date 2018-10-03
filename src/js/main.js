@@ -8,9 +8,10 @@ const colors = require( './variables/colors.json' );
 window.onload = () =>
 {
 	let palette = colors.purple;
+	let palette = colors.darkGreen;
 
 	let app = new App( document.getElementById( ( 'app' ) ) );
-	app.backgroundColor = palette[2];
+	app.backgroundColor = palette.sky;
 
 	let background = app.addCloudsLayer( 'background' );
 	let foreground = app.addCloudsLayer( 'foreground' );
@@ -25,15 +26,16 @@ window.onload = () =>
 		new Node( 250, -40 ),
 		new Node( 50, -50 ),
 
-	], palette[0], 4 );
+	], palette.foreground, window.devicePixelRatio );
 
-	let cloud2 = new Cloud(
+
+	cloud = new Cloud(
 	[
 		new Node( 75 ),
 		new Node( 275, -70 ),
 		new Node( 200, -70 ),
 
-	], palette[1], 4 );
+	], palette.background, window.devicePixelRatio );
 
 	foreground.drawCloudAt( cloud, -5, 35 );
 	background.drawCloudAt( cloud2, 20, 30 );
