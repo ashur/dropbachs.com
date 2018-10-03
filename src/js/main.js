@@ -7,6 +7,14 @@ const colors = require( './variables/colors.json' );
 
 window.onload = () =>
 {
+	if( !(typeof document.head.animate === "function") )
+	{
+		var jsElm = document.createElement("script");
+		jsElm.type = "application/javascript";
+		jsElm.src = "https://polyfill.io/v2/polyfill.min.js?features=WebAnimations";
+		document.body.appendChild(jsElm);
+	}
+
 	let palette = colors.darkGreen;
 
 	let app = new App( document.getElementById( ( 'app' ) ) );
