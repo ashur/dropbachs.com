@@ -7,7 +7,6 @@ const colors = require( './variables/colors.json' );
 
 window.onload = () =>
 {
-	let palette = colors.purple;
 	let palette = colors.darkGreen;
 
 	let app = new App( document.getElementById( ( 'app' ) ) );
@@ -28,6 +27,7 @@ window.onload = () =>
 
 	], palette.foreground, window.devicePixelRatio );
 
+	foreground.drawCloudAt( cloud, -5, 15 );
 
 	cloud = new Cloud(
 	[
@@ -37,8 +37,17 @@ window.onload = () =>
 
 	], palette.background, window.devicePixelRatio );
 
-	foreground.drawCloudAt( cloud, -5, 35 );
-	background.drawCloudAt( cloud2, 20, 30 );
+	background.drawCloudAt( cloud, 20, 10 );
+
+	cloud = new Cloud(
+	[
+		new Node( 75 ),
+		new Node( 275, -70 ),
+		new Node( 200, -70 ),
+	
+	], palette.background, window.devicePixelRatio );
+
+	background.drawCloudAt( cloud, 80, 70 );
 
 	window.app = app;
 	window.colors = colors;
