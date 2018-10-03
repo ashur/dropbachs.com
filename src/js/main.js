@@ -20,8 +20,8 @@ window.onload = () =>
 	let app = new App( document.getElementById( ( 'app' ) ) );
 	app.backgroundColor = palette.sky;
 
-	let background = app.addCloudsLayer( 'background' );
-	let foreground = app.addCloudsLayer( 'foreground' );
+	let background = app.addCloudsLayer( 'background', { playbackRate: 0.66 } );
+	let foreground = app.addCloudsLayer( 'foreground', { playbackRate: 1.00 } );
 
 	let cloud = new Cloud(
 	[

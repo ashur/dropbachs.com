@@ -8,11 +8,9 @@ class App extends Module
 		super( element );
 	}
 
-	addCloudsLayer( id )
+	addCloudsLayer( id, options )
 	{
-		let cloudsModule = new Clouds( Clouds.createElement({
-			id: id,
-		}));
+		let cloudsModule = new Clouds( Clouds.createElement( { id: id } ), options );
 
 		this.appendChild( cloudsModule );
 
@@ -22,7 +20,6 @@ class App extends Module
 	set backgroundColor( color )
 	{
 		document.getElementsByTagName( 'body' )[0].style.backgroundColor = color;
-		// this.element.style.backgroundColor = color;
 	}
 }
 
