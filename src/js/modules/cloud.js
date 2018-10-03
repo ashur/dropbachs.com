@@ -1,25 +1,40 @@
-class Cloud
+const Module = require( '../module' );
+
+class Cloud extends Module
 {
 	/**
 	 * @param {Array.<Node>} nodes
 	 */
-	constructor( nodes, color )
+	constructor( nodes, color, scale )
 	{
-		this.nodes = nodes;
+		let element = document.createElement( 'canvas' );
+		element.className = 'cloud';
+		super( element );
+
 		this.color = color;
+		this.nodes = nodes;
+		this.scale = scale || 2;
+
+		this.x = 0;
+		this.y = 0;
 	}
 
-	/**
-	 * @param {Canvas} canvas
-	 */
-	draw( canvas )
+	draw()
 	{
-		canvas.width = this.width;
-		canvas.height = this.height;
+		this.nodes.forEach( node =>
+		{
+			node.scale = this.scale;
+		});
 
-		canvas.style.width = Math.ceil( this.width / 3 ) + 'px';
+		this.element.width = this.width;
+		this.element.height = this.height;
 
-		let context = canvas.getContext( '2d' );
+		this.element.style.left = `${this.x}vw`;
+		this.element.style.top = `${this.y}vh`;
+
+		// this.element.style.width = Math.ceil( this.width / this.scale ) + 'px';
+
+		let context = this.element.getContext( '2d' );
 
 		let x = 0;
 		let nodeCenters = [];
@@ -32,7 +47,7 @@ class Cloud
 			node.center = { x: x, y: node.radius };
 			nodeCenters.push( x );
 
-			let y = canvas.height - node.radius;
+			let y = this.element.height - node.radius;
 
 			context.fillStyle = this.color;
 			context.moveTo( x, y );
@@ -47,13 +62,13 @@ class Cloud
 			let leftNode = this.nodes[n - 1];
 			let rightNode = this.nodes[n];
 
+			let shorterNode = leftNode.diameter < rightNode.diameter ? leftNode : rightNode;
+
 			let x = leftNode.center.x;
-			let y = canvas.height - leftNode.center.y;
+			let y = this.element.height - shorterNode.center.y;
 
 			let width = rightNode.center.x - leftNode.center.x;
-			let height = leftNode.center.y;
-
-			console.log( leftNode, rightNode );
+			let height = shorterNode.center.y;
 
 			context.moveTo( x, y );
 			context.fillRect( x, y, width, height );
