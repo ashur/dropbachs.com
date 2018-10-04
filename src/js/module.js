@@ -59,30 +59,42 @@ class Module
 		let originalX = boundingRect.left + 'px';
 		let originalY = boundingRect.top + 'px';
 
-		x = x != undefined ? `${x}${this.units.x}` : originalX;
-		y = y != undefined ? `${y}${this.units.y}` : originalY;
-
 		options = options || {};
 
 		options.duration = options.duration || 0;
 		options.easing = options.easing || "linear";
 
-		let keyframes = [
-			{
-				left: originalX,
-				top: originalY,
-			},
-			{
-				left: x,
-				top: y,
-			}
-		];
+		let keyframes = [{}, {}];
 
-		/* Don't set up a 0-length animation; just move the element */
+		if( x != undefined )
+		{
+			keyframes[0].left = originalX;
+			keyframes[1].left = `${x}${this.units.x}`;
+		}
+		if( y != undefined )
+		{
+			keyframes[0].top = originalY;
+			keyframes[1].top = `${y}${this.units.y}`;
+		}
+
+		/* No change in position, let's go home. */
+		if( Object.keys( keyframes[1] ).length == 0 )
+		{
+			return;
+		}
+
+		/* Don't set up a 0-length animation; move the element and call it a day */
 		if( options.duration == 0 )
 		{
-			this.element.style.left = x;
-			this.element.style.top = y;
+			if( keyframes[1].left )
+			{
+				this.element.style.left = keyframes[1].left;
+			}
+			if( keyframes[1].top )
+			{
+				this.element.style.top = keyframes[1].top;
+			}
+
 			return;
 		}
 
