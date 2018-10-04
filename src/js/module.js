@@ -6,8 +6,8 @@ class Module
 		this.playbackRate = 1;
 		
 		this.units = {
-			h: 'vh',
-			v: 'vw',
+			x: 'vw',
+			y: 'vh',
 		};
 	}
 
@@ -59,8 +59,8 @@ class Module
 		let originalX = boundingRect.left + 'px';
 		let originalY = boundingRect.top + 'px';
 
-		x = x != undefined ? `${x}${this.units.h}` : originalX;
-		y = y != undefined ? `${y}${this.units.v}` : originalY;
+		x = x != undefined ? `${x}${this.units.x}` : originalX;
+		y = y != undefined ? `${y}${this.units.y}` : originalY;
 
 		options = options || {};
 
