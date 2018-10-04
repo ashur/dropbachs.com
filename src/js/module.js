@@ -64,7 +64,7 @@ class Module
 
 		options = options || {};
 
-		options.duration = options.duration || 100;
+		options.duration = options.duration || 0;
 		options.easing = options.easing || "linear";
 
 		let keyframes = [
@@ -77,6 +77,14 @@ class Module
 				top: y,
 			}
 		];
+
+		/* Don't set up a 0-length animation; just move the element */
+		if( options.duration == 0 )
+		{
+			this.element.style.left = x;
+			this.element.style.top = y;
+			return;
+		}
 
 		this.moveAnimation = this.element.animate( keyframes, options );
 		this.moveAnimation.playbackRate = this.playbackRate;
