@@ -1,5 +1,14 @@
 .cloud {
 	position: absolute;
-	width: 50vmin;
-	opacity: 0.95;
+	opacity: 0.85;
+
+	will-change: top, left;
+
+	#foreground & {
+		max-width: 66vw;
+	}
+
+	#background & {
+		max-width: 33vw;
+	}
 }

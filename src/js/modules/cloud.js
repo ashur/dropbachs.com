@@ -32,7 +32,7 @@ class Cloud extends Module
 		this.element.style.left = `${this.x}vw`;
 		this.element.style.top = `${this.y}vh`;
 
-		// this.element.style.width = Math.ceil( this.width / this.scale ) + 'px';
+		this.element.style.width = Math.ceil( this.width / this.scale ) + 'px';
 
 		let context = this.element.getContext( '2d' );
 
