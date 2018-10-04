@@ -42,8 +42,8 @@ class Module
 		let originalX = boundingRect.left / document.documentElement.clientWidth * 100;
 		let originalY = boundingRect.top / document.documentElement.clientHeight * 100;
 
-		let x = xOffset == 0 ? undefined : originalX + xOffset;
-		let y = yOffset == 0 ? undefined : originalY + yOffset;
+		let x = xOffset == 0 ? null : this.boundingClientRect.x + xOffset;
+		let y = yOffset == 0 ? null : this.boundingClientRect.y + yOffset;
 
 		this.moveTo( x, y, options );
 	}
@@ -94,6 +94,31 @@ class Module
 			this.moveAnimation.pause();
 
 		}, options.duration / this.playbackRate - 100 );
+	}
+
+	/**
+	 * Convert bounding rect properties to viewport units
+	 */
+	get boundingClientRect()
+	{
+		let boundingRect = this.element.getBoundingClientRect();
+		let viewportRect = {};
+
+		let viewportWidth = document.documentElement.clientWidth;
+		let viewportHeight = document.documentElement.clientHeight;
+
+		viewportRect.top = boundingRect.top / viewportHeight * 100;
+		viewportRect.right = boundingRect.right / viewportWidth * 100;
+		viewportRect.bottom = boundingRect.bottom / viewportHeight * 100;
+		viewportRect.left = boundingRect.left / viewportWidth * 100;
+
+		viewportRect.height = boundingRect.height / viewportHeight * 100;
+		viewportRect.width = boundingRect.width / viewportWidth * 100;
+
+		viewportRect.x = viewportRect.left;
+		viewportRect.y = viewportRect.top;
+
+		return viewportRect;
 	}
 }
 
