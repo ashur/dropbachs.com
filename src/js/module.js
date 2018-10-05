@@ -98,14 +98,39 @@ class Module
 			return;
 		}
 
+		/* Animation */
+		let padDuration = 500; // ms
+
+		console.log( keyframes );
+
+		if( x != undefined )
+		{
+			let velocity = x / options.duration;
+			let padDistance = velocity * padDuration;
+
+			keyframes[1].left = (x + padDistance) + this.units.x;
+		}
+		if( y != undefined )
+		{
+			let velocity = y / options.duration;
+			let padDistance = velocity * padDuration;
+
+			keyframes[1].top = (y + padDistance) + this.units.y;
+		}
+
+		options.duration = options.duration / this.playbackRate + padDuration;
+
+		console.log( keyframes, options );
+
 		this.moveAnimation = this.element.animate( keyframes, options );
-		this.moveAnimation.playbackRate = this.playbackRate;
+		// this.moveAnimation.playbackRate = this.playbackRate;
 
 		setTimeout( () =>
 		{
+			console.log( 'done' );
 			this.moveAnimation.pause();
 
-		}, options.duration / this.playbackRate - 100 );
+		}, options.duration - padDuration );
 	}
 
 	/**
