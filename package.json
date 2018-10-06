@@ -1,5 +1,5 @@
 {
-  "name": "create-static",
+  "name": "dropbachs.com",
   "private": true,
   "scripts": {
     "build": "npm run build-html && npm run build-js && npm run build-scss",
