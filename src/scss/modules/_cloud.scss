@@ -3,6 +3,7 @@
 	opacity: 0.85;
 
 	will-change: top;
+	transition-property: top;
 
 	#foreground & {
 		max-width: 66vw;

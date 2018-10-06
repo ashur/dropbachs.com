@@ -22,14 +22,14 @@ class Module
 
 		let element = document.createElement( tagName );
 
-		let properties = ['id', 'className'];
+		let properties = [ 'id', 'className' ];
 		properties.forEach( property =>
 		{
-			if( options[property] )
+			if( options[ property ] )
 			{
-				element[property] = options[property];
+				element[ property ] = options[ property ];
 			}
-		});
+		} );
 
 		return element;
 	}
@@ -38,7 +38,7 @@ class Module
 	{
 		this.element.style.left = `${left}${this.units.x}`;
 	}
-	
+
 	get left()
 	{
 		return this.boundingClientRect.left;
@@ -82,53 +82,28 @@ class Module
 	 */
 	moveTo( x, y, duration, easing )
 	{
-		return new Promise( (resolve, reject) =>
+		this.element.classList.add( easing );
+
+		let adjustedDuration = duration / this.playbackRate;
+		this.element.style.transitionDuration = `${adjustedDuration}ms`;
+
+		return new Promise( ( resolve, reject ) =>
 		{
-			duration = duration || 0;
-
-			if( duration == 0)
+			if( x != undefined )
 			{
-				if( x != undefined )
-				{
-					this.left = x;
-				}
-				if( y != undefined )
-				{
-					this.top = y;
-				}
+				this.left = x;
 			}
-			else
+			if( y != undefined )
 			{
-				let boundingRect = this.element.getBoundingClientRect();
-				let keyframes = [{}, {}];
-	
-				if( x )
-				{
-					keyframes[0].left = boundingRect.left + 'px';
-					keyframes[1].left = x + this.units.x;
-				}
-				if( y )
-				{
-					keyframes[0].top = boundingRect.top + 'px';
-					keyframes[1].top = y + this.units.y;
-				}
-
-				let options = {
-					duration: duration / this.playbackRate,
-					easing: easing || 'ease-in'
-				};
-
-				let animation = this.element.animate( keyframes, options );
-				let pauseAnimation = setInterval( () =>
-				{
-					animation.pause();
-					clearInterval( pauseAnimation );
-
-					resolve();	
-
-				}, duration / this.playbackRate - 10 );
+				this.top = y;
 			}
-		});
+
+			setTimeout( () =>
+			{
+				resolve();
+
+			}, adjustedDuration );
+		} );
 	}
 
 	/**
