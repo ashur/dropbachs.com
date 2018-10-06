@@ -7,12 +7,13 @@
     "build-js": "browserify src/js/main.js -o dist/main.js -t [ babelify --presets [ @babel/preset-env ] ]",
     "build-scss": "node-sass --output-style compressed -o dist src/scss/main.scss",
     "clean": "rm -r dist && mkdir dist",
-    "serve": "serve dist",
+    "serve": "serve -l tcp://morgenthaler.local:5000 dist",
+    "start": "npm run build && concurrently -n watch,serve \"npm:watch\" \"npm:serve\"",
     "test": "mocha test/**/*.js",
     "watch-html": "onchange 'src/html/**/*.html' -- npm run build-html",
     "watch-js": "onchange 'src/js/**/*' -- npm run build-js",
     "watch-scss": "onchange 'src/scss/**/*.scss' -- npm run build-scss",
-    "watch": "npm run build && concurrently -n serve,html,js,scss \"npm:serve\" \"npm:watch-html\" \"npm:watch-js\" \"npm:watch-scss\""
+    "watch": "concurrently -n html,js,scss \"npm:watch-html\" \"npm:watch-js\" \"npm:watch-scss\""
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
