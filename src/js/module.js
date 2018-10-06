@@ -4,7 +4,7 @@ class Module
 	{
 		this.element = element;
 		this.playbackRate = 1;
-		
+
 		this.units = {
 			x: 'vw',
 			y: 'vh',
@@ -34,103 +34,101 @@ class Module
 		return element;
 	}
 
-	moveBy( xOffset, yOffset, options )
+	set left( left )
+	{
+		this.element.style.left = `${left}${this.units.x}`;
+	}
+	
+	get left()
+	{
+		return this.boundingClientRect.left;
+	}
+
+	/**
+	 * @param {number} x		X position (in viewport units)
+	 *
+	 * @param {number} y		Y position (in viewport units)
+	 *
+	 * @param {number} duration	Animation duration (ms)
+	 *
+	 * @param {string} easing	Easing function (ex., 'linear')
+	 *
+	 * @return	{Promise}
+	 */
+	moveBy( xOffset, yOffset, duration, easing )
 	{
 		// Convert from pixels to vw/vh
 		let boundingRect = this.element.getBoundingClientRect();
 
-		let originalX = boundingRect.left / document.documentElement.clientWidth * 100;
-		let originalY = boundingRect.top / document.documentElement.clientHeight * 100;
+		let originalX = boundingRect.left / window.innerWidth * 100;
+		let originalY = boundingRect.top / window.innerHeight * 100;
 
-		let x = xOffset == 0 ? null : this.boundingClientRect.x + xOffset;
-		let y = yOffset == 0 ? null : this.boundingClientRect.y + yOffset;
+		let x = xOffset == 0 ? null : this.left + xOffset;
+		let y = yOffset == 0 ? null : this.top + yOffset;
 
-		this.moveTo( x, y, options );
+		return this.moveTo( x, y, duration, easing );
 	}
 
-	moveTo( x, y, options )
+	/**
+	 * @param {number} x		X position (in viewport units)
+	 *
+	 * @param {number} y		Y position (in viewport units)
+	 *
+	 * @param {number} duration	Animation duration (ms)
+	 *
+	 * @param {string} easing	Easing function (ex., 'linear')
+	 *
+	 * @return	{Promise}
+	 */
+	moveTo( x, y, duration, easing )
 	{
-		if( this.moveAnimation != undefined )
+		return new Promise( (resolve, reject) =>
 		{
-			return;
-		}
+			duration = duration || 0;
 
-		let boundingRect = this.element.getBoundingClientRect();
-		let originalX = boundingRect.left + 'px';
-		let originalY = boundingRect.top + 'px';
-
-		options = options || {};
-
-		options.duration = options.duration || 0;
-		options.easing = options.easing || "linear";
-
-		let keyframes = [{}, {}];
-
-		if( x != undefined )
-		{
-			keyframes[0].left = originalX;
-			keyframes[1].left = `${x}${this.units.x}`;
-		}
-		if( y != undefined )
-		{
-			keyframes[0].top = originalY;
-			keyframes[1].top = `${y}${this.units.y}`;
-		}
-
-		/* No change in position, let's go home. */
-		if( Object.keys( keyframes[1] ).length == 0 )
-		{
-			return;
-		}
-
-		/* Don't set up a 0-length animation; move the element and call it a day */
-		if( options.duration == 0 )
-		{
-			if( keyframes[1].left )
+			if( duration == 0)
 			{
-				this.element.style.left = keyframes[1].left;
+				if( x != undefined )
+				{
+					this.left = x;
+				}
+				if( y != undefined )
+				{
+					this.top = y;
+				}
 			}
-			if( keyframes[1].top )
+			else
 			{
-				this.element.style.top = keyframes[1].top;
+				let boundingRect = this.element.getBoundingClientRect();
+				let keyframes = [{}, {}];
+	
+				if( x )
+				{
+					keyframes[0].left = boundingRect.left + 'px';
+					keyframes[1].left = x + this.units.x;
+				}
+				if( y )
+				{
+					keyframes[0].top = boundingRect.top + 'px';
+					keyframes[1].top = y + this.units.y;
+				}
+
+				let options = {
+					duration: duration / this.playbackRate,
+					easing: easing || 'ease-in'
+				};
+
+				let animation = this.element.animate( keyframes, options );
+				let pauseAnimation = setInterval( () =>
+				{
+					animation.pause();
+					clearInterval( pauseAnimation );
+
+					resolve();	
+
+				}, duration / this.playbackRate - 10 );
 			}
-
-			return;
-		}
-
-		/* Animation */
-		let padDuration = 500; // ms
-
-		console.log( keyframes );
-
-		if( x != undefined )
-		{
-			let velocity = x / options.duration;
-			let padDistance = velocity * padDuration;
-
-			keyframes[1].left = (x + padDistance) + this.units.x;
-		}
-		if( y != undefined )
-		{
-			let velocity = y / options.duration;
-			let padDistance = velocity * padDuration;
-
-			keyframes[1].top = (y + padDistance) + this.units.y;
-		}
-
-		options.duration = options.duration / this.playbackRate + padDuration;
-
-		console.log( keyframes, options );
-
-		this.moveAnimation = this.element.animate( keyframes, options );
-		// this.moveAnimation.playbackRate = this.playbackRate;
-
-		setTimeout( () =>
-		{
-			console.log( 'done' );
-			this.moveAnimation.pause();
-
-		}, options.duration - padDuration );
+		});
 	}
 
 	/**
@@ -156,6 +154,16 @@ class Module
 		viewportRect.y = viewportRect.top;
 
 		return viewportRect;
+	}
+
+	set top( top )
+	{
+		this.element.style.top = `${top}${this.units.y}`;
+	}
+
+	get top()
+	{
+		return this.boundingClientRect.top;
 	}
 }
 
