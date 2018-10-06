@@ -21,7 +21,6 @@
     "browserify": "^13.0.1",
     "chai": "^4.2.0",
     "concurrently": "^4.0.1",
-    "eslint": "^5.6.1",
     "mocha": "^5.2.0",
     "node-sass": "^4.9.3",
     "onchange": "^4.1.0",
