@@ -2,13 +2,15 @@
   "name": "dropbachs.com",
   "private": true,
   "scripts": {
-    "build": "npm run build-html && npm run build-js && npm run build-scss",
+    "build-dev": "npm run build-html && npm run build-js && npm run build-scss",
+    "build-dist": "npm run clean && npm run build-html && npm run build-js-dist && npm run build-scss",
     "build-html": "cp -R src/html/ dist/",
     "build-js": "browserify src/js/main.js -o dist/main.js -t [ babelify --presets [ @babel/preset-env ] ]",
+    "build-js-dist": "browserify -g uglifyify src/js/main.js -o dist/main.js -t [ babelify --presets [ @babel/preset-env ] ]",
     "build-scss": "node-sass --output-style compressed -o dist src/scss/main.scss",
     "clean": "rm -r dist && mkdir dist",
     "serve": "serve -l tcp://morgenthaler.local:5000 dist",
-    "start": "npm run build && concurrently -n watch,serve \"npm:watch\" \"npm:serve\"",
+    "start": "npm run build-dev && concurrently -n watch,serve \"npm:watch\" \"npm:serve\"",
     "test": "mocha test/**/*.js",
     "watch-html": "onchange 'src/html/**/*.html' -- npm run build-html",
     "watch-js": "onchange 'src/js/**/*' -- npm run build-js",
@@ -25,6 +27,7 @@
     "mocha": "^5.2.0",
     "node-sass": "^4.9.3",
     "onchange": "^4.1.0",
-    "serve": "^10.0.1"
+    "serve": "^10.0.1",
+    "uglifyify": "^5.0.1"
   }
 }
