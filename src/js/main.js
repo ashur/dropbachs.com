@@ -1,62 +1,11 @@
 const App = require( './modules/app' );
-const Cloud = require( './modules/cloud' );
-const Clouds = require( './modules/clouds' );
-const Node = require( './modules/node' );
-
-const colors = require( './variables/colors.json' );
+const Scene = require( './modules/scene' );
 
 window.onload = () =>
 {
-	if( !(typeof document.head.animate === "function") )
-	{
-		var jsElm = document.createElement("script");
-		jsElm.type = "application/javascript";
-		jsElm.src = "https://polyfill.io/v2/polyfill.min.js?features=WebAnimations";
-		document.body.appendChild(jsElm);
-	}
-
-	let palette = colors.darkGreen;
-
 	let app = new App( document.getElementById( ( 'app' ) ) );
-	app.backgroundColor = palette.sky;
 
-	let background = app.addCloudsLayer( 'background', { playbackRate: 0.66 } );
-	let foreground = app.addCloudsLayer( 'foreground', { playbackRate: 1.00 } );
+	let scene = new Scene( 'https://images.unsplash.com/photo-1498637841888-108c6b723fcb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=54d1fa94e704450bcdd1aa84dae243cf&auto=format&fit=crop&w=2691&q=80' );
 
-	let cloud = new Cloud(
-	[
-		new Node( 75 ),
-		new Node( 300, -70 ),
-		new Node( 200, -70 ),
-		new Node( 100, -35 ),
-		new Node( 150, -20 ),
-		new Node( 250, -40 ),
-		new Node( 50, -50 ),
-
-	], palette.foreground, window.devicePixelRatio );
-
-	foreground.drawCloudAt( cloud, -5, 15 );
-
-	cloud = new Cloud(
-	[
-		new Node( 75 ),
-		new Node( 275, -70 ),
-		new Node( 200, -70 ),
-
-	], palette.background, window.devicePixelRatio );
-
-	background.drawCloudAt( cloud, 20, 10 );
-
-	cloud = new Cloud(
-	[
-		new Node( 75 ),
-		new Node( 275, -70 ),
-		new Node( 200, -70 ),
-	
-	], palette.background, window.devicePixelRatio );
-
-	background.drawCloudAt( cloud, 80, 70 );
-
-	window.app = app;
-	window.colors = colors;
+	app.appendChild( scene );
 };
