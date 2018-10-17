@@ -1,25 +1,16 @@
-const Clouds = require( './clouds' );
 const Module = require( '../module' );
 
 class App extends Module
 {
-	constructor( element )
+	get scene()
 	{
-		super( element );
+		return this._scene;
 	}
 
-	addCloudsLayer( id, options )
+	set scene( module )
 	{
-		let cloudsModule = new Clouds( Clouds.createElement( { id: id } ), options );
-
-		this.appendChild( cloudsModule );
-
-		return cloudsModule;
-	}
-
-	set backgroundColor( color )
-	{
-		document.getElementsByTagName( 'body' )[0].style.backgroundColor = color;
+		this._scene = module;
+		this.appendChild( module );
 	}
 }
 
