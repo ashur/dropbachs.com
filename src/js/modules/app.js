@@ -13,6 +13,17 @@ class App extends Module
 		this.appendChild( module );
 	}
 
+	get record()
+	{
+		return this._record;
+	}
+
+	set record( module )
+	{
+		this._record = module;
+		this.appendChild( module );
+	}
+
 	get scene()
 	{
 		return this._scene;

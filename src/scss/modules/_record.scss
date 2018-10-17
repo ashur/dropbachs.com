@@ -1,0 +1,41 @@
+#record {
+	position: absolute;
+	display: block;
+
+	$initial-diameter: 200vmin;
+
+	height: $initial-diameter;
+	width: $initial-diameter;
+
+	border-radius: 50%;
+
+	top: calc( 50% - #{$initial-diameter} / 2 );
+	left: calc( 50% - #{$initial-diameter} / 2 );
+
+	transition-property: opacity;
+
+	overflow: hidden;
+
+	.light, .vinyl {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		border-radius: 50%;
+	}
+
+	.light {
+		transition-property: transform;
+	}
+
+	.vinyl {
+		animation-fill-mode: forwards;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
+}
+
+@keyframes spin {
+	to {
+		transform: rotate( 360deg );
+	}
+}
