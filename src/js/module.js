@@ -38,6 +38,8 @@ class Module
 		let didAdd = false;
 		originalTransitions.forEach( originalTransition =>
 		{
+			originalTransition = originalTransition.trim();
+
 			if( originalTransition == "" )
 			{
 				// Skip blanks
