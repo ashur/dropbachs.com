@@ -9,4 +9,8 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition-property: none;
+	}
 }
