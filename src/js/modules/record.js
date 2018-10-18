@@ -45,6 +45,21 @@ class Record extends Module
 		}
 	}
 
+	opacity( opacity, duration )
+	{
+		return new Promise( (resolve, reject) =>
+		{
+			this.transition( 'opacity', `${duration}ms`, 'ease-in-out' );
+			this.element.style.opacity = opacity;
+
+			setTimeout( () =>
+			{
+				resolve();
+
+			}, duration );
+		});
+	}
+
 	scale( scale, duration )
 	{
 		return new Promise( (resolve, reject) =>
