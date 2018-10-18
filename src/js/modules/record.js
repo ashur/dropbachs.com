@@ -8,8 +8,8 @@ class Record extends Module
 		super( element );
 
 		/* "Submodules" */
-		this.vinyl = new Module( Module.createElement( { className: 'vinyl' } ) );
-		this.appendChild( this.vinyl );
+		this._vinyl = new Module( Module.createElement( { className: 'vinyl' } ) );
+		this.appendChild( this._vinyl );
 	}
 
 	get light()
@@ -43,8 +43,8 @@ class Record extends Module
 
 	spin( duration )
 	{
-		this.vinyl.element.style.animationDuration = `${duration}ms`;
-		this.vinyl.element.style.animationName = 'spin';
+		this._vinyl.element.style.animationDuration = `${duration}ms`;
+		this._vinyl.element.style.animationName = 'spin';
 	}
 }
 

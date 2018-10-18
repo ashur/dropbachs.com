@@ -2,7 +2,7 @@
 	position: absolute;
 	display: block;
 
-	$initial-diameter: 200vmin;
+	$initial-diameter: 150vmin;
 
 	height: $initial-diameter;
 	width: $initial-diameter;
@@ -12,7 +12,8 @@
 	top: calc( 50% - #{$initial-diameter} / 2 );
 	left: calc( 50% - #{$initial-diameter} / 2 );
 
-	transition-property: opacity;
+	transition-property: opacity, transform;
+	transition-timing-function: ease-in;
 
 	overflow: hidden;
 
