@@ -1,27 +1,41 @@
+$vinyl-diameter: 175vmin;
+$label-diameter: $vinyl-diameter / 3;
+$label-radius: $label-diameter / 2;
+$hole-diameter: $label-diameter / 10;
+$hole-radius: $hole-diameter / 2;
+
 #record {
 	position: absolute;
 	display: block;
 
-	$initial-diameter: 150vmin;
-
-	height: $initial-diameter;
-	width: $initial-diameter;
+	height: $vinyl-diameter;
+	width: $vinyl-diameter;
 
 	border-radius: 50%;
 
-	top: calc( 50% - #{$initial-diameter} / 2 );
-	left: calc( 50% - #{$initial-diameter} / 2 );
+	top: calc( 50% - #{$vinyl-diameter} / 2 );
+	left: calc( 50% - #{$vinyl-diameter} / 2 );
 
 	transition-property: opacity, transform;
-	transition-timing-function: ease-in;
+	transition-timing-function: ease-in-out;
 
 	overflow: hidden;
 
-	.light, .vinyl {
+	.label, .light {
 		position: absolute;
+		top: 0;
+		left: 0;
 		height: 100%;
 		width: 100%;
 		border-radius: 50%;
+	}
+
+	.label {
+		background: url( images/label.png ) no-repeat center;
+		background-size: $label-diameter * 0.75;
+
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
 	}
 
 	.light {
@@ -29,10 +43,17 @@
 	}
 
 	.vinyl {
-		background: black;
-		animation-fill-mode: forwards;
-		animation-iteration-count: infinite;
-		animation-timing-function: linear;
+		position: relative;
+
+		height: $hole-diameter;
+		width: $hole-diameter;
+		
+		box-shadow: 0 0 0 $label-radius white, 0 0 0 $vinyl-diameter / 2 black;
+
+		top: calc( 50% - #{$hole-diameter} / 2 );
+		left: calc( 50% - #{$hole-diameter} / 2 );
+
+		border-radius: 50%;
 	}
 }
 

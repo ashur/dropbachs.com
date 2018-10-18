@@ -10,6 +10,9 @@ class Record extends Module
 		/* "Submodules" */
 		this._vinyl = new Module( Module.createElement( { className: 'vinyl' } ) );
 		this.appendChild( this._vinyl );
+
+		this.label = new Module( Module.createElement( { className: 'label' } ) );
+		this.appendChild( this.label );
 	}
 
 	get light()
@@ -19,6 +22,7 @@ class Record extends Module
 
 	set light( options )
 	{
+		console.log( options );
 		if( !this._light )
 		{
 			this._light = new Module( Module.createElement( { className: 'light' } ) );
@@ -41,10 +45,25 @@ class Record extends Module
 		}
 	}
 
+	scale( scale, duration )
+	{
+		return new Promise( (resolve, reject) =>
+		{
+			this.element.style.transitionDuration = `${duration}ms`;
+			this.element.style.transform = `scale( ${scale} )`;
+
+			setTimeout( () =>
+			{
+				resolve();
+
+			}, duration );
+		});
+	}
+
 	spin( duration )
 	{
-		this._vinyl.element.style.animationDuration = `${duration}ms`;
-		this._vinyl.element.style.animationName = 'spin';
+		this.label.element.style.animationDuration = `${duration}ms`;
+		this.label.element.style.animationName = 'spin';
 	}
 }
 
