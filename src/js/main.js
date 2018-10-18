@@ -1,7 +1,7 @@
 const App = require( './modules/app' );
+const Background = require( './modules/background' );
 const Credits = require( './modules/credits' );
 const Record = require( './modules/record' );
-const Scene = require( './modules/scene' );
 
 window.onload = () =>
 {
