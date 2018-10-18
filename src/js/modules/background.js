@@ -19,8 +19,8 @@ class Background extends Module
 	{
 		return new Promise( (resolve, reject) =>
 		{
+			this.transition( 'transform', `${duration}ms`, 'ease-in-out' );
 			this.element.style.transform = `scale( ${scale} ) rotate( ${angle}deg )`;
-			this.element.style.transitionDuration = `${duration}ms`;
 
 			setTimeout( () =>
 			{

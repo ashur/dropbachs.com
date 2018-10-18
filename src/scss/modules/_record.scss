@@ -16,8 +16,6 @@ $hole-radius: $hole-diameter / 2;
 	top: calc( 50% - #{$vinyl-diameter} / 2 );
 	left: calc( 50% - #{$vinyl-diameter} / 2 );
 
-	transition-property: opacity, transform;
-	transition-timing-function: ease-in-out;
 
 	overflow: hidden;
 
@@ -36,10 +34,6 @@ $hole-radius: $hole-diameter / 2;
 
 		animation-timing-function: linear;
 		animation-iteration-count: infinite;
-	}
-
-	.light {
-		transition-property: transform;
 	}
 
 	.vinyl {

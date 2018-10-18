@@ -22,7 +22,6 @@ class Record extends Module
 
 	set light( options )
 	{
-		console.log( options );
 		if( !this._light )
 		{
 			this._light = new Module( Module.createElement( { className: 'light' } ) );
@@ -35,12 +34,13 @@ class Record extends Module
 			this._light.element.style.background = `linear-gradient( ${gradient} )`;		
 		}
 
-		if( options.duration )
-		{
-			this._light.element.style.transitionDuration = `${options.duration}ms`;
-		}
 		if( options.angle !== undefined )
 		{
+			if( options.duration )
+			{
+				this._light.transition( 'transform', `${options.duration}ms`, 'ease-in-out' );
+			}
+
 			this._light.element.style.transform = `rotate( ${options.angle}deg )`;
 		}
 	}
@@ -49,7 +49,7 @@ class Record extends Module
 	{
 		return new Promise( (resolve, reject) =>
 		{
-			this.element.style.transitionDuration = `${duration}ms`;
+			this.transition( 'transform', `${duration}ms`, 'ease-in-out' );
 			this.element.style.transform = `scale( ${scale} )`;
 
 			setTimeout( () =>
