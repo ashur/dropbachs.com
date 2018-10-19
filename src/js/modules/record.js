@@ -15,6 +15,11 @@ class Record extends Module
 		this.appendChild( this.label );
 	}
 
+	hide()
+	{
+		this.opacity( 0, 0 );
+	}
+
 	set labelColor( color )
 	{
 		this.element.style.setProperty( '--label-color', color );
@@ -83,6 +88,11 @@ class Record extends Module
 
 			}, duration );
 		});
+	}
+
+	show()
+	{
+		this.opacity( 1, 0 );
 	}
 
 	spin( duration )

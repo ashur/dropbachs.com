@@ -19,6 +19,8 @@ $hole-radius: $hole-diameter / 2;
 	top: calc( 50% - #{$vinyl-diameter} / 2 );
 	left: calc( 50% - #{$vinyl-diameter} / 2 );
 
+	opacity: 0;
+
 	&, .label {
 		will-change: opacity, transform;
 	}
