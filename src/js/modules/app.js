@@ -10,8 +10,14 @@ class App extends Module
 		super( document.getElementById( ( 'app' ) ) );
 
 		this.background = new Background( scene.background.url );
-		this.credits = new Credits();
 		this.record = new Record();
+
+		this.scene = scene;
+
+		if( this.scene.preplay )
+		{
+			this.scene.preplay.call( this );
+		}
 	}
 
 	get background()
@@ -34,6 +40,31 @@ class App extends Module
 	{
 		this._credits = module;
 		this.appendChild( module );
+	}
+	
+	play( duration, offset )
+	{
+		offset = offset || 0;
+
+		return new Promise( resolve =>
+		{
+			this.record.spin( 16000 );
+			this.scene.play.call( this, duration );
+
+			this.credits = new Credits();
+			
+			setTimeout( () =>
+			{
+				console.log( 'postplay go' );
+				if( this.scene.postplay )
+				{
+					this.scene.postplay.call( this );
+				}
+				resolve();
+
+			}, duration - offset );
+			
+		}, duration - offset );
 	}
 
 	get record()
