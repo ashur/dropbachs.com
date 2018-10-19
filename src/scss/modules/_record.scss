@@ -47,8 +47,31 @@ $hole-radius: $hole-diameter / 2;
 
 		height: $hole-diameter;
 		width: $hole-diameter;
-		
-		box-shadow: 0 0 0 $label-radius var( --label-color ), 0 0 0 $vinyl-diameter / 2 black;
+
+		--vinyl-color: black;
+		--groove-color: rgba( 255, 255, 255, 0.06 );
+
+		$stroke-width: 1;
+		box-shadow:
+			0 0 0 ($hole-radius + 2) var( --label-color ),
+			0 0 0 ($hole-radius + 2.2) rgba( 0, 0, 0, 0.1 ),
+			0 0 0 ($label-radius - $stroke-width) var( --label-color ),
+			0 0 0 ($label-radius) rgba( 0, 0, 0, 0.8 ),
+			0 0 0 ($label-radius + $stroke-width) var( --label-color ),
+
+			0 0 0 ($label-radius + $stroke-width + 6) var( --vinyl-color ),
+
+			0 0 0 ($label-radius + $stroke-width + 12) var( --groove-color ),
+			0 0 0 ($label-radius + $stroke-width + 12.25) var( --vinyl-color ),
+			0 0 0 ($label-radius + $stroke-width + 20) var( --groove-color ),
+			0 0 0 ($label-radius + $stroke-width + 20.25) var( --vinyl-color ),
+			0 0 0 ($label-radius + $stroke-width + 30) var( --groove-color ),
+			0 0 0 ($label-radius + $stroke-width + 30.25) var( --vinyl-color ),
+
+			0 0 0 ($label-radius + $stroke-width + 37.5) var( --groove-color ),
+
+			0 0 0 ($vinyl-diameter / 2) var( --vinyl-color ),
+			;
 
 		top: calc( 50% - #{$hole-diameter} / 2 );
 		left: calc( 50% - #{$hole-diameter} / 2 );
