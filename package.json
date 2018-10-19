@@ -31,5 +31,8 @@
     "onchange": "^4.1.0",
     "serve": "^10.0.1",
     "uglifyify": "^5.0.1"
+  },
+  "dependencies": {
+    "howler": "^2.0.15"
   }
 }
