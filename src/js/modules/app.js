@@ -1,4 +1,5 @@
 const Background = require( './background' );
+const Credits = require( './credits' );
 const Module = require( '../module' );
 const Record = require( './record' );
 
@@ -9,6 +10,7 @@ class App extends Module
 		super( document.getElementById( ( 'app' ) ) );
 
 		this.background = new Background( scene.background.url );
+		this.credits = new Credits();
 		this.record = new Record();
 	}
 
