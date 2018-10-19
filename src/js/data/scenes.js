@@ -10,7 +10,7 @@ module.exports = [
 		preplay()
 		{
 			this.record.light = {
-				start: 'rgba( 0, 0, 0, 0.5 )',
+				start: 'rgba( 0, 0, 0, 0.3 )',
 				end: 'rgba( 164, 165, 127, 0.2 )',
 				angle: 115
 			};
@@ -21,12 +21,12 @@ module.exports = [
 			this.background.zoom( 1.2, 2, duration );
 
 			this.record.light = {
-				angle: 75,
+				angle: 30,
 				duration: duration
 			}
 
 			this.record.scale( 0.005, duration );
-			this.record.opacity( 0, 2000, duration - 6000 );
+			this.record.opacity( 0, 2000, duration - 9000 );
 		},
 
 		postplay()
