@@ -15,6 +15,11 @@ class Record extends Module
 		this.appendChild( this.label );
 	}
 
+	set labelColor( color )
+	{
+		this.element.style.setProperty( '--label-color', color );
+	}
+
 	get light()
 	{
 		return this._light;

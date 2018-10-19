@@ -5,6 +5,8 @@ $hole-diameter: $label-diameter / 10;
 $hole-radius: $hole-diameter / 2;
 
 #record {
+	--label-color: white;
+
 	position: absolute;
 	display: block;
 	overflow: hidden;
@@ -44,7 +46,7 @@ $hole-radius: $hole-diameter / 2;
 		height: $hole-diameter;
 		width: $hole-diameter;
 		
-		box-shadow: 0 0 0 $label-radius white, 0 0 0 $vinyl-diameter / 2 black;
+		box-shadow: 0 0 0 $label-radius var( --label-color ), 0 0 0 $vinyl-diameter / 2 black;
 
 		top: calc( 50% - #{$hole-diameter} / 2 );
 		left: calc( 50% - #{$hole-diameter} / 2 );
