@@ -35,7 +35,7 @@ $hole-radius: $hole-diameter / 2;
 	}
 
 	.label {
-		background: url( images/label-001.png ) no-repeat center;
+		background: no-repeat center;
 		background-size: $label-diameter * 0.75;
 
 		animation-timing-function: linear;

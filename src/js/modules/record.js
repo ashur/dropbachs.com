@@ -25,6 +25,11 @@ class Record extends Module
 		this.element.style.setProperty( '--label-color', color );
 	}
 
+	set labelImage( filename )
+	{
+		this.label.element.style.backgroundImage = `url( images/${filename}.png )`;
+	}
+
 	get light()
 	{
 		return this._light;

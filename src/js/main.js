@@ -15,6 +15,8 @@ window.onload = () =>
 
 	sound.on( 'load', () =>
 	{
+		app.record.labelImage = song.label;
+
 		app.record.element.onclick = () =>
 		{
 			app.play( sound, 15000 )
