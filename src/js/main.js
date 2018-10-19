@@ -22,7 +22,7 @@ window.onload = () =>
 			app.play( sound, 15000 )
 				.then( () =>
 				{
-					app.credits.opacity( 0.7, 10000 );
+					app.credits.opacity( 0.6, 13000 );
 				});
 		};
 
