@@ -42,20 +42,21 @@ class App extends Module
 		this.appendChild( module );
 	}
 	
-	play( duration, offset )
+	play( sound, offset )
 	{
+		let duration = Math.floor( sound.duration() ) * 1000;
 		offset = offset || 0;
 
 		return new Promise( resolve =>
 		{
 			this.record.spin( 16000 );
 			this.scene.play.call( this, duration );
+			sound.play();
 
 			this.credits = new Credits();
-			
+
 			setTimeout( () =>
 			{
-				console.log( 'postplay go' );
 				if( this.scene.postplay )
 				{
 					this.scene.postplay.call( this );
