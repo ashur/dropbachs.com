@@ -1,0 +1,17 @@
+[
+	{
+		name: 'Air on the G String',
+		src: 'https://ia802708.us.archive.org/24/items/Bach-airOnTheGString/LaMusicaClasicaMasRelajanteDelMundo-Bach-AirOnTheGString_64kb.mp3',
+		label: 'label-001'
+	},
+	{
+		name: 'I. Prélude',
+		src: 'https://ia801208.us.archive.org/18/items/15SuiteNo.4EnMiBemolMajeur/01%20Suite%20no.%201%2C%20en%20sol%20majeur%2C%20pour.mp3',
+		label: 'label-001'
+	},
+	{
+		name: 'IV. Sarabande',
+		src: 'https://ia801208.us.archive.org/18/items/15SuiteNo.4EnMiBemolMajeur/01%20Suite%20no.%201%2C%20en%20sol%20majeur%2C%20pour.mp3',
+		label: 'label-001'
+	}
+]
