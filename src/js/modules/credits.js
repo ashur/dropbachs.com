@@ -8,6 +8,11 @@ class Credits extends Module
 		super( element );
 	}
 
+	set color( color )
+	{
+		this.element.style.backgroundColor = color;
+	}
+
 	opacity( opacity, duration )
 	{
 		this.transition( 'opacity', `${duration}ms`, 'ease-in-out' );
