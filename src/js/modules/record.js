@@ -45,18 +45,23 @@ class Record extends Module
 		}
 	}
 
-	opacity( opacity, duration )
+	opacity( opacity, duration, delay )
 	{
 		return new Promise( (resolve, reject) =>
 		{
-			this.transition( 'opacity', `${duration}ms`, 'ease-in-out' );
-			this.element.style.opacity = opacity;
-
+			delay = delay || 0;
 			setTimeout( () =>
 			{
-				resolve();
+				this.transition( 'opacity', `${duration}ms`, 'ease-in-out' );
+				this.element.style.opacity = opacity;
+	
+				setTimeout( () =>
+				{
+					resolve();
+	
+				}, duration );
 
-			}, duration );
+			}, delay );
 		});
 	}
 
