@@ -42,6 +42,42 @@ $hole-radius: $hole-diameter / 2;
 		animation-iteration-count: infinite;
 	}
 
+	.light {
+		--highlight-color: rgba( 255, 255, 255, 0.0125 );
+
+		&:before, &:after {
+			content: "";
+
+			position: absolute;
+			height: 0;
+			width: 0;
+
+			top: 20vmin;
+
+			filter: blur( 0.6vmin );
+		}
+
+		$highlight-depth: $vinyl-diameter / 2 - $hole-radius;
+
+		// Right-facing
+		&:before {
+			left: 0vmin;
+
+			border-top: 42.5vmin solid transparent;
+			border-bottom: 42.5vmin solid transparent;
+			border-left: $highlight-depth solid var( --highlight-color );
+		}
+
+		// Left-facing
+		&:after {
+			right: 0vmin;
+
+			border-top: 42.5vmin solid transparent;
+			border-bottom: 42.5vmin solid transparent;
+			border-right: $highlight-depth solid var( --highlight-color );
+		}
+	}
+
 	.vinyl {
 		position: relative;
 
@@ -49,7 +85,7 @@ $hole-radius: $hole-diameter / 2;
 		width: $hole-diameter;
 
 		--vinyl-color: black;
-		--groove-color: rgba( 255, 255, 255, 0.06 );
+		--groove-color: rgba( 255, 255, 255, 0.04 );
 
 		$stroke-width: 1;
 		box-shadow:
