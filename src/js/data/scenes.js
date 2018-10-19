@@ -10,7 +10,7 @@ module.exports = [
 		preplay()
 		{
 			this.record.light = {
-				start: 'rgba( 0, 0, 0, 0.2 )',
+				start: 'rgba( 0, 0, 0, 0.5 )',
 				end: 'rgba( 164, 165, 127, 0.2 )',
 				angle: 115
 			};
