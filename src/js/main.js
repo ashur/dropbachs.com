@@ -10,18 +10,18 @@ window.onload = () =>
 	let scene = scenes[ Math.floor( Math.random() * scenes.length ) ];
 	let app = new App( scene );
 
-	app.record.light = {
-		start: 'rgba( 246, 194, 117, 0.2 )',
-		end: 'rgba( 0, 0, 0, 0.1 )',
-		angle: 95
-	};
+	if( scene.record && scene.record.light )
+	{
+		app.record.light = scene.record.light;
+	}
 
-	setTimeout( () =>
+	app.record.element.onclick = () =>
 	{
 		scene.play( app, 151000 );
-		console.log( `Scene: ${scene.name}` );
+	};
 
-	}, 5000 );
+	// https://archive.org/details/AirSuiteNo.3InDMajor
+	// https://archive.org/details/15SuiteNo.4EnMiBemolMajeur
 
 	window.app = app;
 };
