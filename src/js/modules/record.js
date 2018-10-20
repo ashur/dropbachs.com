@@ -105,6 +105,11 @@ class Record extends Module
 		this.label.element.style.animationDuration = `${duration}ms`;
 		this.label.element.style.animationName = 'spin';
 	}
+
+	set title( string )
+	{
+		this.element.setAttribute( 'title', string );
+	}
 }
 
 module.exports = Record;

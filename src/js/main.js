@@ -16,6 +16,7 @@ window.onload = () =>
 	sound.on( 'load', () =>
 	{
 		app.record.labelImage = song.label;
+		app.record.title = song.name;
 
 		app.record.element.onclick = () =>
 		{
