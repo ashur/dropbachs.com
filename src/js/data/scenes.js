@@ -18,7 +18,7 @@ module.exports = [
 
 		play( duration )
 		{
-			this.background.zoom( 1.2, 2, duration );
+			this.background.zoom( 1.3, 2, duration );
 
 			this.record.light = {
 				angle: 30,
