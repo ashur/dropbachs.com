@@ -8,10 +8,5 @@
 		name: 'I. Prélude (Suite in G Major)',
 		src: 'https://ia801208.us.archive.org/18/items/15SuiteNo.4EnMiBemolMajeur/01%20Suite%20no.%201%2C%20en%20sol%20majeur%2C%20pour.mp3',
 		label: 'label-001'
-	},
-	{
-		name: 'IV. Sarabande (Suite in G Major)',
-		src: 'https://ia801208.us.archive.org/18/items/15SuiteNo.4EnMiBemolMajeur/03%20Suite%20no.%201%2C%20en%20sol%20majeur%2C%20pour.mp3',
-		label: 'label-002'
 	}
 ]
