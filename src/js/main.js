@@ -32,9 +32,14 @@ window.onload = () =>
 	});
 
 	/* Scene Builder */
-	let builderStyle = window.getComputedStyle( document.querySelector( '#builder' ) );
+	let builderElement = document.querySelector( '#builder' );
+	let builderStyle = window.getComputedStyle( builderElement );
 	let builderWidth = `calc( ${builderStyle.width} + ${builderStyle.padding} * 2 )`;
-	app.element.style.right = builderWidth;
+	let closeButton = document.querySelector( '#builder .close' );
+	closeButton.onclick = () =>
+	{
+		builderElement.classList.toggle( 'hidden' );
+	};
 
 	let builder = new SceneBuilder( app );
 
