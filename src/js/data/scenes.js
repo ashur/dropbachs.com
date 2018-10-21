@@ -9,16 +9,18 @@ module.exports = [
 
 		preplay()
 		{
+			this.record.labelColor = 'rgb( 236, 216, 133 )';
+
 			this.record.light = {
-				start: 'rgba( 0, 0, 0, 0.3 )',
-				end: 'rgba( 164, 165, 127, 0.2 )',
+				start: 'rgba( 0, 0, 0, 0.5 )',
+				end: 'rgba( 253, 241, 224, 0.15 )',
 				angle: 115
 			};
 		},
 
 		play( duration )
 		{
-			this.background.zoom( 1.3, 2, duration );
+			this.background.zoom( 1.3, 2, duration * 0.8 );
 
 			this.record.light = {
 				angle: 30,
