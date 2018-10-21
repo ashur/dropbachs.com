@@ -1,10 +1,10 @@
 module.exports = [
 	{
-		name: "Info",
+		name: "The Natural Order Of Things",
 	
 		background: {
-			url: 'https://images.unsplash.com/photo-1530906170914-b98659a7ff52?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dd4054f5c72192ea6ff92c601133051a&auto=format&fit=crop&w=2756&q=80',
-			credit: "Nikita Tikhomirov",
+			url: 'https://images.unsplash.com/photo-1525703169860-003818a243e7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3ba1f98c84f96b12d26d2682a41ecfed&auto=format&fit=crop&w=2758&q=80',
+			credit: "John Westrock",
 		},
 
 		preplay()
