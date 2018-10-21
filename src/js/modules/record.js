@@ -7,6 +7,11 @@ class Record extends Module
 		let element = Module.createElement( { id: 'record' } );
 		super( element );
 
+		this.properties = {
+			opacity: 1.0,
+			scale: 1.0,
+		};
+
 		/* "Submodules" */
 		this._vinyl = new Module( Module.createElement( { className: 'vinyl' } ) );
 		this.appendChild( this._vinyl );
@@ -15,9 +20,49 @@ class Record extends Module
 		this.appendChild( this.label );
 	}
 
+	drop( scale, duration )
+	{
+		return new Promise( (resolve, reject) =>
+		{
+			this.transition( 'transform', `${duration}ms`, 'ease-in-out' );
+			this.scale = scale;
+	
+			setTimeout( () =>
+			{
+				resolve();
+	
+			}, duration );
+		});
+	}
+
+	fade( opacity, duration, delay )
+	{
+		return new Promise( (resolve, reject) =>
+		{
+			delay = delay || 0;
+			setTimeout( () =>
+			{
+				this.transition( 'opacity', `${duration}ms`, 'ease-in-out' );
+				this.opacity = opacity;
+	
+				setTimeout( () =>
+				{
+					resolve();
+	
+				}, duration );
+	
+			}, delay );
+		});
+	}
+
 	hide()
 	{
-		this.opacity( 0, 0 );
+		this.opacity = 0;
+	}
+
+	get labelColor()
+	{
+		return this.element.style.getPropertyValue( '--label-color' );
 	}
 
 	set labelColor( color )
@@ -60,44 +105,31 @@ class Record extends Module
 		}
 	}
 
-	opacity( opacity, duration, delay )
+	get opacity()
 	{
-		return new Promise( (resolve, reject) =>
-		{
-			delay = delay || 0;
-			setTimeout( () =>
-			{
-				this.transition( 'opacity', `${duration}ms`, 'ease-in-out' );
-				this.element.style.opacity = opacity;
-	
-				setTimeout( () =>
-				{
-					resolve();
-	
-				}, duration );
-
-			}, delay );
-		});
+		return this.properties.opacity;
 	}
 
-	scale( scale, duration )
+	set opacity( opacity )
 	{
-		return new Promise( (resolve, reject) =>
-		{
-			this.transition( 'transform', `${duration}ms`, 'ease-in-out' );
-			this.element.style.transform = `scale( ${scale} )`;
+		this.properties.opacity = opacity;
+		this.element.style.opacity = opacity;
+	}
 
-			setTimeout( () =>
-			{
-				resolve();
+	get scale()
+	{
+		return this.properties.scale;
+	}
 
-			}, duration );
-		});
+	set scale( scale )
+	{
+		this.properties.scale = scale;
+		this.element.style.transform = `scale( ${scale} )`;
 	}
 
 	show()
 	{
-		this.opacity( 1, 0 );
+		this.opacity = 1;
 	}
 
 	spin( duration )

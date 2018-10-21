@@ -1,0 +1,79 @@
+$background-color: #222;
+$border-color: #5E2CA5;
+
+$section-color: #FF41B4;
+
+$text-color: #EEEEEE;
+$label-color: #999999;
+
+#builder {
+	background: $background-color;
+
+	position: absolute;
+	box-sizing: content-box;
+	overflow-y: scroll;
+	
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 16em;
+
+	padding: 1.5em;
+
+	// border-top: solid $border-color 0.75em;
+
+	color: $text-color;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
+
+	h1, h2, h3 {
+		margin: 0;
+		padding: 0;
+	}
+
+	h1 {
+		font-size: 1.25em;
+		font-weight: 700;
+		margin-bottom: 1.0em;
+	}
+
+	h2 {
+		color: $section-color;
+		$spacing: 0.5em;
+		margin: $spacing * 2 0;
+		padding-bottom: $spacing;
+		border-bottom: solid $section-color 3px;
+
+		font-size: 0.75em;
+		text-transform: uppercase;
+	}
+
+	h3 {
+		margin-top: 1.5em;
+		font-size: 0.75em;
+		font-weight: normal;
+		color: $label-color;
+	}
+
+	input {
+		box-sizing: border-box;
+		margin: 0.25em 0;
+		padding: 0.25em 0;
+		width: 100%;
+		border: none;
+		border-bottom: solid #357EDD 2px;
+		background: $background-color;
+		color: $text-color;
+		font-size: 1.125em;
+
+		&::placeholder {
+			color: #444444;
+		}
+	}
+	
+	.value {
+		position: relative;
+		top: -0.375em;
+		font-family: monospace;
+	}
+}

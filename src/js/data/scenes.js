@@ -25,8 +25,8 @@ module.exports = [
 				duration: duration
 			}
 
-			this.record.scale( 0.005, duration );
-			this.record.opacity( 0, 2000, duration - 9000 );
+			this.record.drop( 0.005, duration );
+			this.record.fade( 0, 2000, duration - 9000 );
 		},
 
 		postplay()

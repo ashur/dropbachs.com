@@ -1,5 +1,6 @@
 const App = require( './modules/app' );
 const {Howl, Howler} = require( 'howler' );
+const SceneBuilder = require( './modules/builder' );
 const scenes = require( './data/scenes' );
 const songs = require( './data/songs.json' );
 
@@ -30,5 +31,19 @@ window.onload = () =>
 		app.record.show();
 	});
 
+	/* Scene Builder */
+	let builderStyle = window.getComputedStyle( document.querySelector( '#builder' ) );
+	let builderWidth = `calc( ${builderStyle.width} + ${builderStyle.padding} * 2 )`;
+	app.element.style.right = builderWidth;
+
+	let builder = new SceneBuilder( app );
+
+	let builderControls = document.querySelectorAll( '#builder input' );
+	builderControls.forEach( control =>
+	{
+		let eventType = control.dataset.event || 'input';
+		builder.watch( control.id, eventType );
+	});
+	
 	window.app = app;
 };
