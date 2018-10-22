@@ -33,22 +33,25 @@ window.onload = () =>
 
 	/* Scene Builder */
 	let builderElement = document.querySelector( '#builder' );
-	let builderStyle = window.getComputedStyle( builderElement );
-	let builderWidth = `calc( ${builderStyle.width} + ${builderStyle.padding} * 2 )`;
-	let closeButton = document.querySelector( '#builder .close' );
-	closeButton.onclick = () =>
+	if( builderElement )
 	{
-		builderElement.classList.toggle( 'hidden' );
-	};
-
-	let builder = new SceneBuilder( app );
-
-	let builderControls = document.querySelectorAll( '#builder input' );
-	builderControls.forEach( control =>
-	{
-		let eventType = control.dataset.event || 'input';
-		builder.watch( control.id, eventType );
-	});
+		let builderStyle = window.getComputedStyle( builderElement );
+		let builderWidth = `calc( ${builderStyle.width} + ${builderStyle.padding} * 2 )`;
+		let closeButton = document.querySelector( '#builder .close' );
+		closeButton.onclick = () =>
+		{
+			builderElement.classList.toggle( 'hidden' );
+		};
+	
+		let builder = new SceneBuilder( app );
+	
+		let builderControls = document.querySelectorAll( '#builder input' );
+		builderControls.forEach( control =>
+		{
+			let eventType = control.dataset.event || 'input';
+			builder.watch( control.id, eventType );
+		});
+	}
 	
 	window.app = app;
 };
