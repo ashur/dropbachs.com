@@ -1,4 +1,5 @@
 const Module = require( '../module' );
+const RecordLight = require( './record-light' );
 
 class Record extends Module
 {
@@ -18,6 +19,9 @@ class Record extends Module
 
 		this.label = new Module( Module.createElement( { className: 'label' } ) );
 		this.appendChild( this.label );
+
+		this.light = new RecordLight();
+		this.appendChild( this.light );
 	}
 
 	drop( scale, duration )
@@ -73,36 +77,6 @@ class Record extends Module
 	set labelImage( filename )
 	{
 		this.label.element.style.backgroundImage = `url( images/${filename}.png )`;
-	}
-
-	get light()
-	{
-		return this._light;
-	}
-
-	set light( options )
-	{
-		if( !this._light )
-		{
-			this._light = new Module( Module.createElement( { className: 'light' } ) );
-			this.appendChild( this._light );
-		}
-
-		if( options.start && options.end )
-		{
-			let gradient = `${options.start}, ${options.end}`;
-			this._light.element.style.background = `linear-gradient( ${gradient} )`;		
-		}
-
-		if( options.angle !== undefined )
-		{
-			if( options.duration )
-			{
-				this._light.transition( 'transform', `${options.duration}ms`, 'ease-in-out' );
-			}
-
-			this._light.element.style.transform = `rotate( ${options.angle}deg )`;
-		}
 	}
 
 	get opacity()

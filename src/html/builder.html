@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 
-	<title>Dropbachs</title>
+	<title>Dropbachs | Scene Builder</title>
 	<meta property="og:title" content="Dropbachs" />
 	<meta property="og:description" content="The musical stylings of Johann Sebastian falling in slow-motion from very great heights." />
 
@@ -41,6 +41,17 @@
 
 		<h3>Label Color</h3>
 		<input type="text" id="record-label-color" data-property="record.labelColor" placeholder="#ffffff" />
+
+		<h2>Lighting</h2>
+		<h3>Angle</h3>
+		<input type="range" id="record-light-angle" data-property="record.light.angle" min="0" max="360" step="1" />
+		<span class="value"><span id="record-light-angle-value"></span>&#176;</span>
+
+		<h3>Starting Color</h3>
+		<input type="text" id="record-light-start" data-property="record.light.start" placeholder="#ffffff" />
+
+		<h3>Ending Color</h3>
+		<input type="text" id="record-light-end" data-property="record.light.end" placeholder="#ffffff" />
 	</div>
 </body>
 </html>
