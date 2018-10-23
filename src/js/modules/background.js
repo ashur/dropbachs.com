@@ -2,17 +2,21 @@ const Module = require( '../module' );
 
 class Background extends Module
 {
-	constructor( image )
+	constructor( image, width )
 	{
 		let element = Module.createElement( { id: 'background' } );
 		super( element );
 
 		this.properties = {
 			angle: 0,
-			image: image,
-			scale: 1.0,
+			blur: 0,
+			image: '',
+			scale: 0,
+			width: 100,
 		};
 
+		this.blur = 10;
+		this.scale = 1.05;
 		this.image = image;
 	}
 
@@ -27,15 +31,31 @@ class Background extends Module
 		this.transform();
 	}
 
+	get blur()
+	{
+		return this.properties.blur;
+	}
+
+	set blur( blur )
+	{
+		this.properties.blur = blur;
+		this.element.style.filter = `blur( ${blur}px )`;
+	}
+
 	get image()
 	{
-		return this.properties.image;
+		return `${this.properties.image}?w=${this.width}`;
 	}
 
 	set image( url )
 	{
 		this.properties.image = url;
-		this.element.style.backgroundImage = `url( ${url} )`;
+		this.element.style.backgroundImage = `url( ${this.image} )`;
+	}
+
+	render()
+	{
+		
 	}
 
 	get scale()
@@ -52,6 +72,17 @@ class Background extends Module
 	transform()
 	{
 		this.element.style.transform = `scale( ${this.properties.scale} ) rotate( ${this.properties.angle}deg )`;
+	}
+
+	get width()
+	{
+		return this.properties.width;
+	}
+
+	set width( width )
+	{
+		this.properties.width = width;
+		this.element.style.backgroundImage = `url( ${this.image} )`;
 	}
 
 	zoom( scale, angle, duration )
