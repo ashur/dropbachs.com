@@ -28,7 +28,9 @@ class Module
 		return element;
 	}
 
-	transition( property, duration, timingFunction )
+
+
+	transition( property, value, duration, timingFunction )
 	{
 		let newTransition = `${property} ${duration} ${timingFunction}`;
 		let newTransitions = [];
@@ -67,6 +69,7 @@ class Module
 		}
 
 		this.element.style.transition = newTransitions.join( ', ' );
+		this.element.style[property] = value;
 	}
 }
 
